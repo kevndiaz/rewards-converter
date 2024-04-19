@@ -1,14 +1,11 @@
 public class RewardValue {
 
     private final double cashValue;
-    private final double milesValue; // Predefined conversion for simplicity
+    private final double milesValue;
 
     public RewardValue(double cashValue) {
         this.cashValue = cashValue;
-        // Assuming a fixed conversion rate of 1 mile per dollar for simplicity
-        // You can replace this with logic to fetch conversion rates from an external
-        // source
-        this.milesValue = cashValue;
+        this.milesValue = cashValue * ConversionRate.CASH_TO_MILES;
     }
 
     public double getCashValue() {
@@ -19,7 +16,8 @@ public class RewardValue {
         return milesValue;
     }
 
-    // You can add similar methods for other reward programs (e.g.,
-    // getHotelPointsValue())
-    // if you implement logic to retrieve conversion rates for those programs.
+    private static class ConversionRate {
+        public static final double CASH_TO_MILES = 1.0; // You can adjust this conversion rate
+        public static final double MILES_TO_CASH = 0.0035; // Conversion rate for miles to cash
+    }
 }
